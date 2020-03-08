@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title%}Applications List{% endblock %}
+
+{% block body%}
+  <h1>Applications</h1>
+  {% if applications %}
+    <table class="table table-stipped">
+      <thead>
+        <tr>
+          <th>Application Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for application in applications %}
+        <tr>
+          <td>{{ application.applicationName|title }}</td>
+          <td>
+            <a href="/application/{{application.id}}" class="btn btn-dark">Show</a>
+            <a href="/application/edit/{{ application.id }}" class="btn btn-light">Edit</a>
+            <a href="/application/delete/{{ application.id }}" class="btn btn-danger">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No applications to display</p>
+  {% endif %}
+  <hr>
+ <a href="/application/add-new">+ Create new application</a>
+{% endblock %}

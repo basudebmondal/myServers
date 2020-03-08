@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ application.applicationName }}{% endblock %}
+
+{% block body %}
+ <h1>Name: {{ application.ApplicationName|title }}</h1>
+ <p>Version: {{ application.ApplicationVersion|capitalize }}</p>
+ <hr>
+ <a href="/application/list">Go Back</a>
+{% endblock %}
