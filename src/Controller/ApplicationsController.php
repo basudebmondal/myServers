@@ -14,6 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
+use League\Csv\Writer;
+
 
 class ApplicationsController extends AbstractController {
     /**
@@ -125,12 +127,27 @@ class ApplicationsController extends AbstractController {
     }
 
     /**
-     * @Route("/application/version/{id}", name="application_version")
+     * @Route("/export", name="application_export")
      */
-    public function versions ($id) {
-      $application = $this->getDoctrine()->getRepository(Applications::class)->find($id);
 
-      return $this->render('applications/version.html.twig', array('application' => $application));
+    public function export () {
+      $entityManager = $this->getDoctrine()->getManager(); 
+      $applications = $entityManager->getRepository(Applications::class)->findAll();
+
+      $header = ['Application Name', 'Version', 'Description'];
+
+      //we create the CSV into memory
+      $csv = Writer::createFromFileObject(new \SplTempFileObject);
+
+      //insert the header
+      $csv->insertOne($header);
+
+      foreach($applications as $application) {
+        $csv->insertOne([$application->getApplicationName(), $application->getApplicationVersion(), $application->getApplicationDescription()]);
+      }
+
+      $csv->output('applications.csv');
+      die;
     }
 
     
