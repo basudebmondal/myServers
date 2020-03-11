@@ -1,15 +1,15 @@
 # myServers
 
-A demo crud project build on Symfony 4
+A demo crud project with export data funtionality build on Symfony 4
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
-Install latest version Xampp/LAMP stack. 
-Install composer.
+*Install latest version Xampp/LAMP stack. 
+*Install composer.
 
 ### Quick Start
 
